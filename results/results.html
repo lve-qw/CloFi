@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="../header/header.css">
+    <link rel="stylesheet" href="../main/main.css">
+    <link rel="stylesheet" href="results.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+    <script src="results.js" defer></script>
+
+</head>
+<body>
+
+    <header id="header"></header>
+    <main>
+        <nav class="navbar search">
+            <form class="container" role="search" action="results.html">
+                <div class="input-group">
+                    <input
+                        type="search"
+                        class="form-control"
+                        placeholder="Поиск"
+                        aria-label="Поиск"
+                        name="q"
+                    >
+                    <button class="btn search-btn" type="submit">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <g clip-path="url(#clip0_1_20425)">
+                                <path d="M21 21L16.6569 16.6569M16.6569 16.6569C18.1046 15.2091 19 13.2091 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C13.2091 19 15.2091 18.1046 16.6569 16.6569Z" stroke="#5a5a6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1_20425">
+                                    <rect width="24" height="24" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            <button class="btn filter-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <g clip-path="url(#clip0_1_20430)">
+                        <path d="M4 8H13" stroke="#5A5A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 8L20 8" stroke="#5A5A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11 16L20 16" stroke="#5A5A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 16H7" stroke="#5A5A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="9" cy="16" r="2" stroke="#5A5A6E" stroke-width="2"/>
+                        <circle cx="15" cy="8" r="2" stroke="#5A5A6E" stroke-width="2"/>
+                    </g>
+                </svg>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Фильтры</h5>
+                    <button type="button" class="btn-close btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <span>Размер</span>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Бренд</a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    ...
+                                </label>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <span class="d-block mb-2">Цена</span>
+                            <div class="row g-2">
+                            <div class="col">
+                                <input type="number" class="form-control" oninput="this.value = Math.max(0, this.value)">
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" oninput="this.value = Math.max(0, this.value)">
+                            </div>
+                            </div>
+                        </li>
+                      
+
+                    </ul>
+                </div>
+        </nav>
+        <div id="products" class="products-container"></div>
+
+
+
+    
+    </main>
+    <footer>
+        <div>© 2026 CloFi. Все права защищены.</div>
+    </footer>
+    <script>
+        fetch('../header/header.html')    
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('header').innerHTML = html;
+          })
+          .catch(error => console.error('Не удалось загрузить Header:', error));
+    </script>
+
+</body>
+</html>

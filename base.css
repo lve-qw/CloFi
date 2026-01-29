@@ -1,0 +1,33 @@
+:root{
+
+  --background: #f5f5f7;       
+  --foreground: #1a1a2e;        
+  --primary: #ffffff;            
+  --primary-text: #1a1a2e;      
+  --secondary: #f0f0f5;         
+  --secondary-text: #5a5a6e;    
+  --border: #dcdce0;   
+}
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: sans-serif;
+  margin: 0;
+}
+
+
+button {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+footer {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--secondary);
+    border: 1px solid var(--border);
+    font-size: 16px;
+    color: var(--foreground);
+}
