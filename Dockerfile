@@ -14,7 +14,7 @@ WORKDIR /root/
 
 COPY --from=builder /app/clofi .
 COPY --from=builder /app/static ./static/
-COPY --from=builder .env .
+COPY --from=builder /app/.env .
 
 EXPOSE 8080
 
