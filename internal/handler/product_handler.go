@@ -17,9 +17,7 @@ func NewProductHandler(productService *service.ProductService) *ProductHandler {
 	return &ProductHandler{productService: productService}
 }
 
-// GetProducts обрабатывает поиск и фильтрацию товаров.
 func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
-	// Пагинация
 	pageStr := r.URL.Query().Get("page")
 	limitStr := r.URL.Query().Get("limit")
 	page, _ := strconv.Atoi(pageStr)
@@ -28,10 +26,9 @@ func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
 		page = 1
 	}
 	if limit <= 0 || limit > 100 {
-		limit = 20 // по умолчанию, максимум 100 за раз
+		limit = 20
 	}
 
-	// Фильтры
 	var filters repository.ProductFilters
 	if brand := r.URL.Query().Get("brand"); brand != "" {
 		filters.Brand = &brand
@@ -44,7 +41,6 @@ func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
 		filters.SortByPrice = sort
 	}
 
-	// Текстовый поиск
 	query := strings.TrimSpace(r.URL.Query().Get("q"))
 
 	products, err := h.productService.GetProducts(r.Context(), filters, query, page, limit)
@@ -56,7 +52,6 @@ func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
 	JSONResponse(w, http.StatusOK, products)
 }
 
-// GetProductByID возвращает товар по ID.
 func (h *ProductHandler) GetProductByID(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	if id == "" {

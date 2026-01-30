@@ -15,7 +15,6 @@ func NewLikeHandler(likeService *service.LikeService) *LikeHandler {
 	return &LikeHandler{likeService: likeService}
 }
 
-// ToggleLike обрабатывает переключение лайка.
 func (h *LikeHandler) ToggleLike(w http.ResponseWriter, r *http.Request) {
 	userID, ok := r.Context().Value(middleware.UserContextKey).(int64)
 	if !ok {
@@ -46,5 +45,3 @@ func (h *LikeHandler) ToggleLike(w http.ResponseWriter, r *http.Request) {
 	}
 	JSONResponse(w, http.StatusOK, map[string]string{"status": status})
 }
-
-

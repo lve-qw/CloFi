@@ -5,7 +5,6 @@ import (
 
 	"clofi/internal/repository"
 
-//	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -62,5 +61,3 @@ func (r *PostgresLikeRepository) GetUserLikedProductIDs(ctx context.Context, use
 	}
 	return ids, rows.Err()
 }
-
-

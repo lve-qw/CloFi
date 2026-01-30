@@ -1,11 +1,9 @@
-// Пакет model содержит структуры данных, используемые в приложении.
 package model
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// Product представляет товар одежды, хранится в MongoDB.
 type Product struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
 	Name         string             `bson:"name" json:"name" validate:"required"`

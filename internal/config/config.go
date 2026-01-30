@@ -1,4 +1,3 @@
-// Пакет config отвечает за загрузку конфигурации из переменных окружения.
 package config
 
 import (
@@ -7,7 +6,6 @@ import (
 	"github.com/kelseyhightower/envconfig"
 )
 
-// Config содержит все параметры приложения.
 type Config struct {
 	// PostgreSQL
 	PostgresHost     string `envconfig:"POSTGRES_HOST" default:"localhost"`
@@ -21,19 +19,15 @@ type Config struct {
 	MongoDB  string `envconfig:"MONGO_DB" default:"app_db"`
 
 	// JWT
-	JWTSecret     string        `envconfig:"JWT_SECRET" default:"my_super_secret_key_123!"`
-	JWTExpiresIn  time.Duration `envconfig:"JWT_EXPIRES_IN" default:"24h"`
+	JWTSecret    string        `envconfig:"JWT_SECRET" default:"my_super_secret_key_123!"`
+	JWTExpiresIn time.Duration `envconfig:"JWT_EXPIRES_IN" default:"24h"`
 
 	// Сервер
 	ServerPort string `envconfig:"SERVER_PORT" default:"8080"`
 }
 
-// Load читает переменные окружения и заполняет структуру Config.
-// Возвращает ошибку, если переменные имеют неверный формат.
 func Load() (*Config, error) {
 	var cfg Config
 	err := envconfig.Process("", &cfg)
 	return &cfg, err
 }
-
-

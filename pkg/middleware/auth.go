@@ -1,4 +1,3 @@
-// Пакет middleware содержит HTTP-мидлвары.
 package middleware
 
 import (
@@ -7,16 +6,13 @@ import (
 	"net/http"
 	"strings"
 
-//	"clofi/internal/model"
 	"github.com/golang-jwt/jwt/v5"
 )
 
-// ContextKey — тип для ключей в context.
 type ContextKey string
 
 const UserContextKey ContextKey = "user"
 
-// AuthMiddleware проверяет JWT и извлекает ID пользователя.
 func AuthMiddleware(secret string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -61,4 +57,3 @@ func AuthMiddleware(secret string) func(http.Handler) http.Handler {
 		})
 	}
 }
-

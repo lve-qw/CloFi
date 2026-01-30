@@ -12,7 +12,6 @@ var (
 	ErrUserNotFound    = errors.New("пользователь не найден")
 )
 
-// LikeService управляет лайками.
 type LikeService struct {
 	productRepo repository.ProductRepository
 	userRepo    repository.UserRepository
@@ -31,8 +30,6 @@ func NewLikeService(
 	}
 }
 
-// ToggleLike добавляет или удаляет лайк у товара.
-// Возвращает true, если лайк добавлен, false — если удалён.
 func (s *LikeService) ToggleLike(ctx context.Context, userID int64, productID string) (bool, error) {
 	// Проверяем существование пользователя
 	user, err := s.userRepo.FindByID(ctx, userID)
@@ -59,19 +56,14 @@ func (s *LikeService) ToggleLike(ctx context.Context, userID int64, productID st
 	}
 
 	if liked {
-		// Удаляем лайк
 		err = s.likeRepo.RemoveLike(ctx, userID, productID)
 		return false, err
 	} else {
-		// Добавляем лайк
 		err = s.likeRepo.AddLike(ctx, userID, productID)
 		return true, err
 	}
 }
 
-// IsLiked проверяет, лайкал ли пользователь товар.
 func (s *LikeService) IsLiked(ctx context.Context, userID int64, productID string) (bool, error) {
 	return s.likeRepo.IsLiked(ctx, userID, productID)
 }
-
-
