@@ -9,6 +9,7 @@ import (
 	"clofi/internal/repository"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -52,11 +53,16 @@ func (r *MongoProductRepository) Create(ctx context.Context, product *model.Prod
 
 // FindByID ищет товар по ID.
 func (r *MongoProductRepository) FindByID(ctx context.Context, id string) (*model.Product, error) {
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, nil
+	}
+
 	var product model.Product
-	err := r.collection.FindOne(ctx, bson.M{"_id": id}).Decode(&product)
+	err = r.collection.FindOne(ctx, bson.M{"_id": objectID}).Decode(&product)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
-			return nil, nil // не найден — не ошибка
+			return nil, nil
 		}
 		return nil, err
 	}
@@ -88,7 +94,7 @@ func (r *MongoProductRepository) FindAll(ctx context.Context, filters repository
 		sort = bson.D{{"name", 1}} // по умолчанию — по имени
 	}
 
-	opts := options.Find().SetSort(sort).SetSkip(int64((page-1)*limit)).SetLimit(int64(limit))
+	opts := options.Find().SetSort(sort).SetSkip(int64((page - 1) * limit)).SetLimit(int64(limit))
 
 	cursor, err := r.collection.Find(ctx, filter, opts)
 	if err != nil {
@@ -115,7 +121,7 @@ func (r *MongoProductRepository) SearchByText(ctx context.Context, query string,
 
 	opts := options.Find().
 		SetSort(bson.D{{"score", bson.M{"$meta": "textScore"}}}).
-		SetSkip(int64((page-1)*limit)).
+		SetSkip(int64((page - 1) * limit)).
 		SetLimit(int64(limit))
 
 	cursor, err := r.collection.Find(ctx, filter, opts)
@@ -135,4 +141,3 @@ func (r *MongoProductRepository) SearchByText(ctx context.Context, query string,
 	}
 	return products, cursor.Err()
 }
-
