@@ -64,6 +64,10 @@ func (h *ProductHandler) GetProductByID(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
+	if len(id) != 24 {
+		ErrorResponse(w, http.StatusBadRequest, "некоректный id")
+	}
+
 	product, err := h.productService.GetProductByID(r.Context(), id)
 	if err != nil {
 		ErrorResponse(w, http.StatusInternalServerError, "ошибка получения товара")

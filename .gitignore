@@ -8,6 +8,10 @@
 *.so
 *.dylib
 
+# MacOs
+*.DS_Store
+**/.DS_Store
+
 # Python
 venv/
 
