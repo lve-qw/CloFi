@@ -84,13 +84,13 @@ func main() {
 	r.Get("/favorites", serveFile("./static/favorites/favorites.html"))
 	r.Get("/results", serveFile("./static/results/results.html"))
 
-	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))).ServeHTTP)
+	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Страница не найдена", http.StatusNotFound)
 	})
 
-	addr := cfg.ServerPort
-	log.Printf("сервер запущен на http://localhost:%s", addr)
+	addr := ":" + cfg.ServerPort
+	log.Printf("сервер запущен на http://localhost%s", addr)
 	log.Fatal(http.ListenAndServe(addr, r))
 }
