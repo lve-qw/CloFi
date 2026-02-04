@@ -4,43 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloFi</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="../base.css">
     <link rel="stylesheet" href="register.css">
-
+    <script src="register.js" defer></script>
 </head>
+<body>
+    <main>
+        <div>
+            <form class="register-form" id="registerForm" novalidate>
+                <h1>Регистрация</h1>
+                <div>
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div>
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" minlength="6" required>
+                </div>
 
-<main>
-    <div>
-        
-        <form class="register-form" method="POST" action="register.html">
-            <h1>Регистрация</h1>
-            <div>
-                <label for="username">Имя:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div>
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <div>
-                <label for="confirm_password">Подтвердите пароль:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-            </div>
-            
-            <div>
-                <button type="submit">Зарегистрироваться</button>
-            </div>
-        </form>
-        
-        <p>Уже есть аккаунт? <a href="../login/login.html">Войдите</a></p>
-    </div>
-</main>
+                <div>
+                    <button type="submit">Зарегистрироваться</button>
+                </div>
+                <div class="register-error"></div>
+                
+            </form>
+            <p>Уже есть аккаунт? <a href="../login/login.html">Войдите</a></p>
+        </div>
+    </main>
+</body>
 </html>

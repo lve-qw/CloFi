@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="../base.css">
     <link rel="stylesheet" href="login.css">
-</head>
+    <script rel="login.js" defer></script>
 
-<main>
+</head>
+<body>
+    <main>
         <div>
-            <form class="login-form" method="POST" action="login.html">
+            <form class="login-form" id="loginForm">
                 <h1>Вход</h1>
                 
                 <div>
@@ -26,11 +28,13 @@
                 <div>
                     <button type="submit">Войти</button>
                 </div>
+                <div class="login-error"></div>
             </form>
             
             <p>Нет аккаунта? <a href="../register/register.html">Зарегистрируйтесь</a></p>
         </div>
     </main>
+</body>
 </html>
 
 

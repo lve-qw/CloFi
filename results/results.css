@@ -9,3 +9,26 @@
 .search-btn {
     margin-right: 30px ;
 }
+
+.btn.apply {
+    background-color: #5a87e6;
+    color: white;
+}
+
+.btn.apply:focus {
+    background-color: #4f7bd1;
+    border-color: #4f7bd1;
+    color: white;
+}
+
+.btn.off {
+    background-color: white;
+    color: #6c757d; 
+    border: 1px solid #dee2e6; 
+}
+
+.btn.off:focus {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+    color: #6c757d; 
+}

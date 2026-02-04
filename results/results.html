@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="../header/header.css">
     <link rel="stylesheet" href="../main/main.css">
     <link rel="stylesheet" href="results.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
-
     <script src="results.js" defer></script>
 
 </head>
@@ -61,66 +60,70 @@
                     <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Фильтры</h5>
                     <button type="button" class="btn-close btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <span>Размер</span>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Бренд</a>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    ...
-                                </label>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <span class="d-block mb-2">Цена</span>
-                            <div class="row g-2">
-                            <div class="col">
-                                <input type="number" class="form-control" oninput="this.value = Math.max(0, this.value)">
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control" oninput="this.value = Math.max(0, this.value)">
-                            </div>
-                            </div>
-                        </li>
-                      
+                                    <div class="offcanvas-body">
+                    <form id="filterForm" onsubmit="applyAllFilters(); return false;">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            
+                            <li class="nav-item mb-3">
+                                <label class="form-label fw-bold">Бренд</label>
+                                <select class="form-select" id="brandFilter">
+                                    <option value="">Все бренды</option>
+                                </select>
+                            </li>
 
-                    </ul>
+                            <li class="nav-item mb-3">
+                                <label class="form-label fw-bold">Наличие</label>
+                                <select class="form-select" id="availabilityFilter">
+                                    <option value="">Все товары</option>
+                                    <option value="true">В наличии</option>
+                                    <option value="false">Не в наличии</option>
+                                </select>
+                            </li>
+                            
+                            <li class="nav-item mb-4">
+                                <label class="form-label fw-bold">Сортировка по цене</label>
+                                <select class="form-select" id="sortFilter">
+                                    <option value="">По умолчанию</option>
+                                    <option value="asc">Сначала дешевые</option>
+                                    <option value="desc">Сначала дорогие</option>
+                                </select>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn apply">
+                                        Применить
+                                    </button>
+                                    <button type="button" class="btn off"
+                                            onclick="resetAllFilters()">
+                                        Сбросить
+                                    </button>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </form>
                 </div>
+                
         </nav>
+        
+        <div class="modal fade" id="authModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Требуется авторизация</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Войдите в аккаунт, чтобы добавлять товары в избранное</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <a href="../login/login.html" class="btn btn-primary">Войти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="products" class="products-container"></div>
 
 
@@ -128,7 +131,7 @@
     
     </main>
     <footer>
-        <div>© 2026 CloFi. Все права защищены.</div>
+        <div>CloFi. Все права защищены.</div>
     </footer>
     <script>
         fetch('../header/header.html')    
@@ -136,7 +139,7 @@
           .then(html => {
             document.getElementById('header').innerHTML = html;
           })
-          .catch(error => console.error('Не удалось загрузить Header:', error));
+          .catch(error => console.error('Не удалось загрузить шапку сайта:', error));
     </script>
 
 </body>
