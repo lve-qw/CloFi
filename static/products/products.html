@@ -119,7 +119,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        <a href="../login/login.html" class="btn btn-primary">Войти</a>
+                        <a href="/static/login/login.html" class="btn btn-primary">Войти</a>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
         <div>CloFi. Все права защищены.</div>
     </footer>
     <script>
-        fetch('../header/header.html')    
+        fetch('/static/header/header.html')    
           .then(response => response.text())
           .then(html => {
             document.getElementById('header').innerHTML = html;
