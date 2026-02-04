@@ -82,7 +82,7 @@ func main() {
 	r.Get("/register", serveFile("./static/register/register.html"))
 	r.Get("/login", serveFile("./static/login/login.html"))
 	r.Get("/favorites", serveFile("./static/favorites/favorites.html"))
-	r.Get("/product", serveFile("./static/products/product.html"))
+	r.Get("/product", serveFile("./static/product/product.html"))
 	r.Get("/products", serveFile("./static/products/products.html"))
 
 	r.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
