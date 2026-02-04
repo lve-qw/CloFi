@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/main/main.css">
     <link rel="stylesheet" href="/static/favorites/favorites.css">
 
-    <script src="favorites.js" defer></script>
+    <script src="/static/favorites/favorites.js" defer></script>
 </head>
 <body>
     <header id="header"></header>
@@ -23,7 +23,7 @@
     </footer>
     
     <script>
-        fetch('../header/header.html') 
+        fetch('/static/header/header.html') 
           .then(response => response.text())
           .then(html => {
             document.getElementById('header').innerHTML = html;

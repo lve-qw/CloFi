@@ -1,0 +1,29 @@
+# Регистрация
+curl -X POST http://localhost/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","name":"Test User","password":"123456"}'
+
+# Вход
+TOKEN=$(curl -s -X POST http://localhost/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","password":"123456"}' | jq -r .token)
+
+# Получение товаров
+curl "http://localhost/api/products?page=1&limit=5"
+
+# Лайк (если есть товар)
+curl -X POST "http://localhost/api/like?product_id=..." \
+  -H "Authorization: Bearer $TOKEN"
+
+hey -z 30s -c 10 -q 50 http://localhost/api/products?page=1&limit=20
+
+
+# Получите токен (вручную)
+TOKEN="ваш_jwt_токен"
+
+# Сохраните в файл headers.txt:
+echo "Authorization: Bearer $TOKEN" > headers.txt
+
+# Запустите hey с заголовками
+hey -z 20s -c 5 -h2 -D headers.txt \
+  "http://localhost/api/like?product_id=65a1b2c3d4e5f67890123456"
