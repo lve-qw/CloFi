@@ -4,7 +4,9 @@
     border: 1px solid var(--secondary-text);
     margin-right: 20px ;
 }
-
+.filter-btn:hover, .filter-btn:focus {
+    border: 1px solid var(--secondary-text)
+}
 
 .search-btn {
     margin-right: 30px ;
